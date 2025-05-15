@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { Container, Grid, TextInput, Select, RangeSlider, Button, Group, Image, Modal } from '@mantine/core';
+import { Container, Grid, TextInput, Select, RangeSlider, Button, Group, Modal } from '@mantine/core';
 import JobForm from '../components/JobForm';
 import './JobList.css';
 import logo_main from '../logo_main.png';
@@ -20,7 +20,7 @@ function Navbar({ onCreateJob }) {
   return (
     <nav className="navbar">
         <div className='navbar-wrap'>
-            <div className="navbar-logo"><img src={logo_main} style = {{ height: 44.68 ,width: 44}}></img></div>
+            <div className="navbar-logo"><img src={logo_main} alt='main_logo' style = {{ height: 44.68 ,width: 44}}></img></div>
         <div className="navbar-links">
         <Group spacing={32} className='text-group'>
           
@@ -62,7 +62,7 @@ function FiltersBar({ filters, setFilters }) {
     <div className="filters-bar">
         <div className='search-box'>
             
-            <img src={search_logo} className = 'filters-logo' alt=''></img>
+            <img src={search_logo} className = 'filters-logo' alt='search-logo'></img>
             <div className='text-box'>
                 <TextInput
                 className="filter-input"
@@ -74,7 +74,7 @@ function FiltersBar({ filters, setFilters }) {
             
         </div>
         <div className='location-box'>
-            <img src={location_logo} className = 'filters-logo' alt=''></img>
+            <img src={location_logo}  className = 'filters-logo' alt='location_logo'></img>
             <div className='text-box'>
                 <TextInput
                     className="filter-input"
@@ -87,7 +87,7 @@ function FiltersBar({ filters, setFilters }) {
         </div>
 
         <div className='job-type-box'>
-            <img src={job_type_logo} className = 'filters-logo' alt=''></img>
+            <img src={job_type_logo} className = 'filters-logo' alt='job_type_logo'></img>
             <div className='text-box'>
                 <Select
                 className="filter-input"
@@ -163,9 +163,9 @@ const logoMap = {
         </div>
       </div>
       <div className="job-card-meta">
-        <span className='job-card-meta-item'><img src={onsite} />{job.location}</span>
-        <span className="job-card-meta-item"><img src = {experience} alt=''/>{job.requirements}</span>
-        <span className="job-card-meta-item"> <img src = {packages} />{job.responsibilities}</span>
+        <span className='job-card-meta-item'><img src={onsite} alt='onsite-logo' />{job.location}</span>
+        <span className="job-card-meta-item"><img src = {experience} alt='exp-logo'/>{job.requirements}</span>
+        <span className="job-card-meta-item"> <img src = {packages} alt='packages-logo' />{job.responsibilities}</span>
         <span className="job-card-meta-item"> {job.job_type}</span>
         <span className="job-card-meta-item">
           💰 {job.salary_min && job.salary_max ? `₹${job.salary_min / 1000}k - ₹${job.salary_max / 1000}k` : ''}
