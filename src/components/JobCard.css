@@ -1,0 +1,28 @@
+/* src/components/JobCard.css */
+.jobcard {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 40px 40px;
+  margin-bottom: 16px;
+  margin: 100px 100px;
+  background: #fff;
+  
+}
+.jobcard-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  
+}
+
+.jobcard-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+}
+.jobcard-company {
+  font-size: 1rem;
+  color: #888;
+  margin: 0;
+}
