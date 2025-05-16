@@ -165,7 +165,7 @@ const logoMap = {
       <div className="job-card-meta">
         <span className='job-card-meta-item'><img src={onsite} alt='onsite-logo' />{job.location}</span>
         <span className="job-card-meta-item"><img src = {experience} alt='exp-logo'/>{job.requirements}</span>
-        <span className="job-card-meta-item"> <img src = {packages} alt='packages-logo' />{job.responsibilities}</span>
+        <span className="job-card-meta-item"> <img src = {packages} alt='packages-logo' />{job.salary_max}</span>
         <span className="job-card-meta-item"> {job.job_type}</span>
         <span className="job-card-meta-item">
           💰 {job.salary_min && job.salary_max ? `₹${job.salary_min / 1000}k - ₹${job.salary_max / 1000}k` : ''}

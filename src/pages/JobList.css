@@ -54,18 +54,19 @@ box-shadow: 0px 0px 10.25px 0px #413d3d40;
      border-radius: 10px;
 }
 .job-card{
-    padding: 20px;
-    box-shadow: 0px 0px 14px 0px #4c484826;
+    padding: 10px;
+    box-shadow: 0px 0px 14px 0px #D3D3D326;
     border-radius: 20px;
+    margin: 0px 5px;
+    font-family: 'Satoshi Variable', sans-serif;
+    
 
 }
 .job-card-title{
     font-family: 'Satoshi Variable', sans-serif;
     font-weight: 700;
 }
-.job-card-meta{
-   
-}
+
 .job-card-description Button {
 margin-top: 20px;
 padding-top: 20px;
@@ -74,13 +75,27 @@ padding-top: 20px;
     width: 19px;
     height: 16px;
 }
+.job-card-meta{
+ gap: 3px;
+ 
+ 
+}
+.job-card-meta-item{
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 3px;
+  
+}
+.job-card-description{
+  padding-top: 5px;
+}
 
 
 
 
 
 .navbar-link{
-    font-family: Satoshi Variable;
+   font-family: 'Satoshi Variable', sans-serif;
     font-weight: 600 ;
     font-size: 16px;
     line-height: 100%;
@@ -148,7 +163,8 @@ letter-spacing: 30%;
     width: 44;
 height: 44.67692184448242;
 top: 1.66px;
-padding-right: 35px;
+padding-right: 25px;
+padding-left: 20px;
 
 }
 .navbar-links{
@@ -167,6 +183,7 @@ left: 68px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 15px;
    
 }
 .create-botton Button{
@@ -174,6 +191,7 @@ left: 68px;
     text-align: center;
     padding: none;
     background: linear-gradient(180deg, #A128FF 0%, #6100AD 113.79%);
+
 
 }
 .navbar-create-btn{
@@ -216,7 +234,7 @@ left: 68px;
     top: 155px;
     left: 109px;
 
-font-family: Satoshi Variable;
+font-family: 'Satoshi Variable', sans-serif;
 font-weight: 500;
 font-size: 16px;
 line-height: 100%;
@@ -266,7 +284,7 @@ border: none;
   margin-bottom: 4px;
   
   width: fit-content;
-  font-family: Satoshi Variable;
+  font-family: 'Satoshi Variable', sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 100%;
