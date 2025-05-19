@@ -255,6 +255,7 @@
   display: flex;
   align-items: center;
   
+  
  
  
   
@@ -273,6 +274,7 @@
 /* Responsive adjustments */
 @media (max-width: 1440px) {
   .filters-container, .navbar-container {
+    
     width: 100%;
     border-radius: 0;
   }
@@ -448,6 +450,7 @@ padding-right: 15px;
     justify-content: center;
     align-items: center;
     gap: 20px;
+  
     
     padding-right: 70px;
     padding-left: 64px;
@@ -466,8 +469,10 @@ padding-right: 15px;
   
 }
 .search-inside-box {
+  border: none !important;
   width: 210px;
 }
+
 .search-box ::placeholder{
   font-family: 'Satoshi Variable', sans-serif;
       font-weight: 500;
@@ -501,6 +506,14 @@ border: none;
 .filter-input{
     border: none;
     border-width: 0px;
+    padding-top: 10px;
+    border-width: 0px;
+}
+.filters-bar .mantine-TextInput-input,
+.filters-bar .mantine-Select-input {
+  border: none !important;
+  background: #fff !important;  /* Or your preferred background */
+  box-shadow: none !important;
 }
 .location-box{
      display: flex;
