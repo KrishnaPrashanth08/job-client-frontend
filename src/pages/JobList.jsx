@@ -13,6 +13,8 @@ import tesla from '../tesla.png';
 import experience from '../exp-img.png';
 import onsite from '../onsite-img.png';
 import packages from '../package-img.png';
+import '@mantine/dates/styles.css';
+
 
 
 // Navbar component
@@ -22,9 +24,9 @@ function Navbar({ onCreateJob }) {
         <div className='navbar-wrap'>
             <div className="navbar-logo"><img src={logo_main} alt='main_logo' style = {{ height: 44.68 ,width: 44}}></img></div>
         <div className="navbar-links">
-        <Group spacing={32} className='text-group'>
+        <Group spacing={100} className='text-group'>
           
-          <a href="/" className="navbar-link">Home</a>
+          <a href="/" className="navbar-link home-container">Home</a>
           <a href="/" className="navbar-link">Find Jobs</a>
           <a href="/" className="navbar-link">Find Talents</a>
           <a href="/" className="navbar-link">About Us</a>
@@ -62,10 +64,10 @@ function FiltersBar({ filters, setFilters }) {
     <div className="filters-bar">
         <div className='search-box'>
             
-            <img src={search_logo} className = 'filters-logo' alt='search-logo'></img>
-            <div className='text-box'>
+            <img src={search_logo} className = 'search-logo' alt='search-logo'></img>
+            <div className='text-box search-inside-box'>
                 <TextInput
-                className="filter-input"
+                className="filter-input "
                 placeholder="Search By Job Title, Role"
                 value={filters.title}
                 onChange={e => setFilters({ ...filters, title: e.target.value })}
@@ -74,7 +76,7 @@ function FiltersBar({ filters, setFilters }) {
             
         </div>
         <div className='location-box'>
-            <img src={location_logo}  className = 'filters-logo' alt='location_logo'></img>
+            <img src={location_logo}  className = 'location-logo' alt='location_logo'></img>
             <div className='text-box'>
                 <TextInput
                     className="filter-input"
@@ -87,7 +89,7 @@ function FiltersBar({ filters, setFilters }) {
         </div>
 
         <div className='job-type-box'>
-            <img src={job_type_logo} className = 'filters-logo' alt='job_type_logo'></img>
+            <img src={job_type_logo} className = 'job-logo' alt='job_type_logo'></img>
             <div className='text-box'>
                 <Select
                 className="filter-input"
@@ -122,7 +124,7 @@ function FiltersBar({ filters, setFilters }) {
                 className="salary-slider"
                 styles={{
                 track: { background: '#222222', height: 2 },
-                thumb: { border: '5px solid #000', background: '#fff', width: 15, height: 15 },
+                thumb: { border: '5px solid #000', background: '#fff', width: 12.5, height: 12.5 },
                 }}
                 // Remove label prop for a clean look
             />
@@ -151,33 +153,47 @@ const logoMap = {
 
   return (
     <div className="job-card">
-      <div className="job-card-header">
-         <img
-            src={logoMap[job.company] || job.logo_url || amazon} 
-            alt={job.company}
-            className="jobcard-logo"
+  
+      <div className="job-time-badge">24h Ago</div>
+      <div className='job-card-header'>
+  
+          <div className="job-card-logo-container">
+            <img
+              src={logoMap[job.company] || job.logo_url || amazon} 
+              alt={job.company}
+              className="jobcard-logo"
             />
-        <div className="job-card-header-info">
-          <div className="job-card-title">{job.title}</div>
-          <div className="job-card-company">{job.company}</div>
-        </div>
+          </div>
+
+
+          <div className="job-card-header-info">
+            <div className="job-card-title">{job.title}</div>
+            
+          </div>
       </div>
+
+
+
       <div className="job-card-meta">
-        <span className='job-card-meta-item'><img src={onsite} alt='onsite-logo' />{job.location}</span>
-        <span className="job-card-meta-item"><img src = {experience} alt='exp-logo'/>{job.requirements}</span>
-        <span className="job-card-meta-item"> <img src = {packages} alt='packages-logo' />{job.salary_max}</span>
-        <span className="job-card-meta-item"> {job.job_type}</span>
-        <span className="job-card-meta-item">
-          💰 {job.salary_min && job.salary_max ? `₹${job.salary_min / 1000}k - ₹${job.salary_max / 1000}k` : ''}
+        <span className="job-card-meta-item exp-class">
+          <img src={experience} alt='exp-logo'/>
+          {job.requirements && job.requirements.trim() ? job.requirements : "1-3yr Exp"}
         </span>
+        <span className='job-card-meta-item'><img src={onsite} alt='onsite-logo' />{job.location}</span>
+        <span className="job-card-meta-item"><img src={packages} alt='packages-logo' />{job.salary_max
+                ? `${Math.round((job.salary_max * 12) / 100000)} LPA`
+                : ''}</span>
       </div>
-      <div className="job-card-description">
-        {job.description}
-      </div>
-      <Button color="blue" fullWidth className="job-card-apply-btn">
+
+      <ul className="job-card-description">
+         <li>A user-friendly interface lets you browse stunning photos and videos</li>
+         <li>Filter destinations based on interests and travel style, and create personalized </li>
+      </ul>
+
+      <Button color='#00aaff' size="lg"  fullWidth className="job-card-apply-btn">
         Apply Now
       </Button>
-    </div>
+</div>
   );
 }
 
@@ -225,27 +241,54 @@ function JobList() {
 
   return (
     <>
-      <Navbar onCreateJob={() => setModalOpened(true)} />
-      <Modal
-        opened={modalOpened}
-        onClose={() => setModalOpened(false)}
-        title="Create Job Opening"
-        size="lg"
-        centered
-      >
-        <JobForm onClose={() => setModalOpened(false)} onJobCreated={handleJobCreated} />
-      </Modal>
-      <Container size="xl" className="joblist-container">
-        <FiltersBar filters={filters} setFilters={setFilters} />
-        <Grid className="joblist-grid">
-          {jobs.map(job => (
-            <Grid.Col span={3} key={job.id}>
-              <JobCard job={job} />
-            </Grid.Col>
-          ))}
-        </Grid>
-      </Container>
-    </>
+  <div className="navbar-filters-wrapper">
+    <div className='navbar-container'>
+        <Navbar onCreateJob={() => setModalOpened(true)} />
+    </div>
+    <div className='filters-container'>
+      <FiltersBar filters={filters} setFilters={setFilters} />
+    </div>
+    
+  </div>
+  <Modal
+    className="custom-modal"
+    opened={modalOpened}
+    onClose={() => setModalOpened(false)}
+    title="Create Job Opening"
+    size="lg"
+    radius="24px"
+    centered
+     styles={{
+      content:{
+        padding: '20px',
+        fontFamily: "'Satoshi Variable', sans-serif",
+      },
+    title: { 
+      
+      width: '100%',
+      textAlign: 'center',
+      fontWeight: 600
+    }
+  }}
+  >
+    <JobForm onClose={() => setModalOpened(false)} onJobCreated={handleJobCreated} />
+  </Modal>
+  <div className='joblist-boxbox'>
+    <Container size="xl" className="joblist-container">
+    <div className='joblist-bg'>
+      <Grid className="joblist-grid">
+      {jobs.map(job => (
+        <Grid.Col span={3} key={job.id}>
+          <JobCard job={job} />
+        </Grid.Col>
+      ))}
+    </Grid>
+    </div>
+    
+  </Container>
+  </div>
+  
+</>
   );
 }
 

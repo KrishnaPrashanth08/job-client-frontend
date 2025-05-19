@@ -3,6 +3,8 @@ import { TextInput, Select, Textarea, Button, Group } from '@mantine/core';
 import { useForm, Controller } from 'react-hook-form';
 import { DateInput } from '@mantine/dates';
 import axios from 'axios';
+import '@mantine/dates/styles.css';
+
 
 function JobForm({ onClose, onJobCreated }) {
   const { register, handleSubmit, reset, control, formState: { errors } } = useForm();
@@ -64,21 +66,31 @@ function JobForm({ onClose, onJobCreated }) {
           )}
         />
       </Group>
-      <Group grow mb="sm">
-        <TextInput
-          label="Salary Min"
-          placeholder="Minimum Salary"
-          type="number"
-          {...register('salary_min', { required: 'Minimum salary is required', valueAsNumber: true })}
-          error={errors.salary_min && errors.salary_min.message}
-        />
-        <TextInput
-          label="Salary Max"
-          placeholder="Maximum Salary"
-          type="number"
-          {...register('salary_max', { required: 'Maximum salary is required', valueAsNumber: true })}
-          error={errors.salary_max && errors.salary_max.message}
-        />
+       <Group grow mb="sm" className="salary-deadline-row">
+        <div className="salary-range-group">
+          <label className="salary-range-label">Salary Range</label>
+          <div className="salary-range-inputs">
+            <div className="salary-range-input">
+              <TextInput
+                placeholder="₹ 0"
+                type="number"
+                {...register('salary_min', { required: 'Minimum salary is required', valueAsNumber: true })}
+                className="custom-input sal-min-input"
+                style={{ paddingLeft: 32 }}
+              />
+            </div>
+            <div className="salary-range-input">
+
+              <TextInput
+                placeholder="₹ 12,00,000"
+                type="number"
+                {...register('salary_max', { required: 'Maximum salary is required', valueAsNumber: true })}
+                className="custom-input"
+                style={{ paddingLeft: 32 }}
+              />
+            </div>
+          </div>
+        </div>
         <Controller
           name="application_deadline"
           control={control}
@@ -88,11 +100,12 @@ function JobForm({ onClose, onJobCreated }) {
               label="Application Deadline"
               placeholder="Pick a date"
               {...field}
-              error={errors.application_deadline && errors.application_deadline.message}
+              className="custom-input application-input"
             />
           )}
         />
       </Group>
+
       <Textarea
         label="Job Description"
         placeholder="Please share a description to let the candidate know more about the job role"
@@ -101,25 +114,13 @@ function JobForm({ onClose, onJobCreated }) {
         mb="sm"
         minRows={3}
       />
-      <Textarea
-        label="Requirements"
-        placeholder="List the job requirements"
-        {...register('requirements')}
-        mb="sm"
-        minRows={2}
-      />
-      <Textarea
-        label="Responsibilities"
-        placeholder="List the job responsibilities"
-        {...register('responsibilities')}
-        mb="sm"
-        minRows={2}
-      />
       <Group position="apart" mt="md">
-        <Button variant="default" onClick={onClose} type="button">
+        <Button variant="default" className="modal-btn save-draft-btn" onClick={onClose} type="button">
           Save Draft
         </Button>
-        <Button type="submit">Publish</Button>
+        <Button type="submit" className="modal-btn publish-btn">
+          Publish <span style={{fontSize: 18, marginLeft: 4}}>&#187;</span>
+        </Button>
       </Group>
     </form>
   );
